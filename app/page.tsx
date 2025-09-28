@@ -7,6 +7,9 @@ import Header from './components/Header'
 import FunnyCaption from './components/FunnyCaption'
 import FloatingElements from './components/FloatingElements'
 import HeroPhotos from './components/HeroPhotos'
+import MemeGenerator from './components/MemeGenerator'
+import RoastBattle from './components/RoastBattle'
+import PhotoDistortion from './components/PhotoDistortion'
 
 export default function Home() {
   const [currentJoke, setCurrentJoke] = useState(0)
@@ -80,8 +83,25 @@ export default function Home() {
       {/* Photo Gallery */}
       <PhotoGallery />
       
+      {/* Meme Generator */}
+      <div id="memes">
+        <MemeGenerator />
+      </div>
+      
+      {/* Roast Battle Arena */}
+      <div id="battle">
+        <RoastBattle />
+      </div>
+      
+      {/* Photo Distortion Lab */}
+      <div id="distort">
+        <PhotoDistortion />
+      </div>
+      
       {/* Funny Caption Generator */}
-      <FunnyCaption />
+      <div id="captions">
+        <FunnyCaption />
+      </div>
       
       {/* Footer */}
       <footer className="py-12 text-center">

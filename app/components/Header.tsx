@@ -23,7 +23,7 @@ export default function Header() {
           </motion.div>
           
           <div className="hidden md:flex space-x-6">
-            {['Gallery', 'Fun Facts', 'Roast Mode', 'Memories'].map((item, index) => (
+            {['Gallery', 'Memes', 'Battle', 'Distort', 'Captions'].map((item, index) => (
               <motion.a
                 key={item}
                 href={`#${item.toLowerCase().replace(' ', '-')}`}
@@ -57,7 +57,7 @@ export default function Header() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden mt-4 pb-4"
           >
-            {['Gallery', 'Fun Facts', 'Roast Mode', 'Memories'].map((item) => (
+            {['Gallery', 'Memes', 'Battle', 'Distort', 'Captions'].map((item) => (
               <motion.a
                 key={item}
                 href={`#${item.toLowerCase().replace(' ', '-')}`}
