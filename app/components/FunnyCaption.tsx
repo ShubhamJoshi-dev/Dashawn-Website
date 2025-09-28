@@ -98,7 +98,11 @@ export default function FunnyCaption() {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    onClick={() => navigator.clipboard.writeText(currentCaption)}
+                    onClick={() => {
+                      if (typeof window !== 'undefined' && navigator.clipboard) {
+                        navigator.clipboard.writeText(currentCaption)
+                      }
+                    }}
                     className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full font-medium transition-colors"
                   >
                     📋 Copy Caption

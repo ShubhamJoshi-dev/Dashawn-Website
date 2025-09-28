@@ -7,17 +7,19 @@ export default function HeroPhotos() {
   const [hoveredPhoto, setHoveredPhoto] = useState<number | null>(null)
 
   const scrollToGallery = () => {
-    document.getElementById('gallery')?.scrollIntoView({ 
-      behavior: 'smooth' 
-    })
-    // Add shake effect to gallery
-    setTimeout(() => {
-      const element = document.getElementById('gallery')
-      if (element) {
-        element.classList.add('shake')
-        setTimeout(() => element.classList.remove('shake'), 500)
-      }
-    }, 800)
+    if (typeof window !== 'undefined') {
+      document.getElementById('gallery')?.scrollIntoView({ 
+        behavior: 'smooth' 
+      })
+      // Add shake effect to gallery
+      setTimeout(() => {
+        const element = document.getElementById('gallery')
+        if (element) {
+          element.classList.add('shake')
+          setTimeout(() => element.classList.remove('shake'), 500)
+        }
+      }, 800)
+    }
   }
 
   return (

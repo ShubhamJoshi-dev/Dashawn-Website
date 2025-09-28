@@ -1,8 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 
 export default function FloatingElements() {
+  const [windowSize, setWindowSize] = useState({ width: 1200, height: 800 })
+  const [isMounted, setIsMounted] = useState(false)
+
   const elements = [
     { emoji: '🪔', delay: 0 },
     { emoji: '🎊', delay: 1 },
@@ -12,6 +16,27 @@ export default function FloatingElements() {
     { emoji: '🎯', delay: 5 },
   ]
 
+  useEffect(() => {
+    setIsMounted(true)
+    
+    const updateWindowSize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      })
+    }
+
+    updateWindowSize()
+    window.addEventListener('resize', updateWindowSize)
+    
+    return () => window.removeEventListener('resize', updateWindowSize)
+  }, [])
+
+  // Don't render on server-side
+  if (!isMounted) {
+    return null
+  }
+
   return (
     <div className="fixed inset-0 pointer-events-none z-10 overflow-hidden">
       {elements.map((element, index) => (
@@ -19,14 +44,14 @@ export default function FloatingElements() {
           key={index}
           className="absolute text-4xl opacity-20"
           initial={{ 
-            x: Math.random() * window.innerWidth,
-            y: window.innerHeight + 100,
+            x: Math.random() * windowSize.width,
+            y: windowSize.height + 100,
             rotate: 0
           }}
           animate={{
             y: -100,
             rotate: 360,
-            x: Math.random() * window.innerWidth
+            x: Math.random() * windowSize.width
           }}
           transition={{
             duration: 15 + Math.random() * 10,
